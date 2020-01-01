@@ -5,6 +5,14 @@
 <head>
     <title>ProjetWeb</title>
 
+<!-- recaptchav3 script with the secret code -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LcLissUAAAAACdWJIJtwj5qcwwxyxkNQOdXhWPH"></script>
+
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
+
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link href="css/fontawesome-free-5.12.0-web/css/all.css" rel="stylesheet">
@@ -249,7 +257,7 @@
                                     Connexion
                                     <span class="underline"></span>
                                 </button>
-                                <form class="form form-login">
+                                <form class="form form-login" id="connexion_forme">
                                     <fieldset>
                                         <legend>Please, enter your email and password for login.</legend>
                                         <div class="input-block">
@@ -269,7 +277,7 @@
                                     Inscription
                                     <span class="underline"></span>
                                 </button>
-                                <form class="form form-signup">
+                                <form class="form form-signup" id="inscription_forme">
                                     <fieldset>
                                         <legend>Please, enter your email, password and password confirmation for sign up.</legend>
                                         <div class="input-block">
@@ -298,26 +306,26 @@
 
                 <div class="form-style-10">
                     <h1>Demande de devis de traduction<span>demander votre devis facilement en remplissant ce formulaire</span></h1>
-                    <form>
+                    <form id="traduction_forme" action="traduction_forme_submit.php" method="post">
                         <div class="section"><span>1</span>Nom & prénoms</div>
                         <div class="inner-wrap">
-                            <label>Nom<input type="text" name="field1" /></label>
-                            <label>Prénom <textarea name="field2"></textarea></label>
+                            <label>Nom<input type="text" name="field1" id="nom"/></label>
+                            <label>Prénom <textarea name="field2" id="prenom"></textarea></label>
                         </div>
 
                         <div class="section"><span>2</span>Email & Phone</div>
                         <div class="inner-wrap">
-                            <label>Email Address <input type="email" name="field3" /></label>
-                            <label>Numéros de téléphone <input type="text" name="field4" /></label>
-                            <label>Adresse <input type="text" name="field5" /></label>
+                            <label>Email Address <input type="email" name="field3" id="email"/></label>
+                            <label>Numéros de téléphone <input type="text" name="field4" id="num_tel"/></label>
+                            <label>Adresse <input type="text" name="field5" id="adresse"/></label>
                         </div>
 
                         <div class="section"><span>3</span>Passwords</div>
                         <div class="inner-wrap">
-                            <label>Langue d'origine <input type="text" name="field6" /></label>
-                            <label>Langue source <input type="text" name="field7" /></label>
+                            <label>Langue d'origine <input type="text" name="field6" id="lang_origine"/></label>
+                            <label>Langue source <input type="text" name="field7" id="lang_source" /></label>
                             
-                             <h4>Select a file: </h4><input type="file" id="file_upload" name="file_upload"><br><br>
+                             <h4>Select a file: </h4><input type="file" id="file_upload" id="file_upload"><br><br>
                                  <select>
                                   <option>Général</option>
                                   <option>Scientifique</option>
@@ -325,14 +333,13 @@
                                 </select>
 
 
-                                <label>Commentaire et demande spécifique</label>>
-                                <textarea type="text" name="comment" cols="40" rows="5"></textarea>
-                        </div>
+                                <label>Commentaire et demande spécifique</label>
+                                <textarea type="text" name="comment" id="comment" cols="40" rows="5"></textarea>
+                                <div class="g-recaptcha" data-sitekey="6LcLissUAAAAACdWJIJtwj5qcwwxyxkNQOdXhWPH" style="margin-top: 30px;"></div>
+                            </div>
                         <div class="button-section">
-                            <input type="submit" name="Sign Up" />
-                            <span class="privacy-policy">
-                                <input type="checkbox" name="submit">
-                            </span>
+                            <label>Envoyer<input type="submit" name="Sign Up" id="submit_trad_form"/></label>
+                            
                         </div>
                     </form>
                 </div>
@@ -366,7 +373,7 @@
 
 
 
-
+    
 
 <script>
     
@@ -380,12 +387,28 @@ switchers.forEach(item => {
 })
 
     
-    
+<script>
+grecaptcha.ready(function() {
+    grecaptcha.execute('6LcLissUAAAAACdWJIJtwj5qcwwxyxkNQOdXhWPH', {action: 'homepage'}).then(function(token) {
+       
+    });
+});
+</script>
+
+
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    <script src="https://www.google.com/recaptcha/api.js?render=_reCAPTCHA_site_key"></script>
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute('put your site key here', {action: 'homepage'}).then(function(token) {
+              // pass the token to the backend script for verification
+            });
+        });
+        </script>
+    
 </body>
 
 </html>

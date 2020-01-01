@@ -470,13 +470,13 @@ a.button-suite:hover:before {
 .form-style-10 input[type="time"],
 .form-style-10 input[type="url"],
 .form-style-10 input[type="password"],
-.form-style-10 textarea,
+
 .form-style-10 select {
 	display: block;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-	width: 100%;
+	width: 60%;
 	padding: 8px;
 	border-radius: 6px;
 	-webkit-border-radius:6px;
@@ -541,9 +541,12 @@ a.button-suite:hover:before {
 
 /*custom option style for translation  in the form*/
 
+#comment{
+width: 100%
+}
   
  select {
-	background-color: #57e3ff;
+	background-color: #51abbd;
 	color: black;
 	padding: 12px;
 	width: 100px;
