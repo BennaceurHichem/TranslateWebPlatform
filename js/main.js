@@ -17,4 +17,10 @@ $('.carousel[data-type="multi"] .item').each(function(){
 });
 
     
+    
+
+    
     });
+
+
+

@@ -171,12 +171,10 @@ a.button-suite:hover:before {
 
 
 .conteneur2{
-   max-width: 720px;
-    margin-left: 10%;
-    margin-bottom: 250px;
-    box-shadow: rgb(119, 119, 119) 0px 0px 10px;
+    max-width: 960px;
     overflow: hidden;
-    border-radius: 25px;
+    margin: 50px auto;
+    box-shadow: 0px 0px 10px #777;
 }
 .d2{
     width: 400%;
