@@ -5,8 +5,8 @@
 <head>
     <title>ProjetWeb</title>
 
-<!-- recaptchav3 script with the secret code -->
-    <script src="https://www.google.com/recaptcha/api.js?render=6LcLissUAAAAACdWJIJtwj5qcwwxyxkNQOdXhWPH"></script>
+<!-- recaptchav2 script with the secret code -->
+    
 
 
     <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -19,11 +19,14 @@
     <!--load all styles -->
     <script src="https://kit.fontawesome.com/a33d1d077b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/tooplate-style.css">
+    <!-- animate.css library for css animation -->
+    <link rel="stylesheet" href="css/animate.css">
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/card_style.scss">
     <link rel="stylesheet" type="text/css" href="css/button.scss">
     <link rel="text/javascript" href="js/main.js">
+    <link rel="text/javascript" href="js/Myanimations.js">
 
 
 
@@ -81,7 +84,7 @@
 
 
                         <div>
-                            <img class="main_img" src="img/%E2%80%94Pngtree%E2%80%94social%20media%20icons%20set%20logo_3588882.png" height="inherit">
+                            <img class="main_img animated slideInLeft" src="img/%E2%80%94Pngtree%E2%80%94social%20media%20icons%20set%20logo_3588882.png" height="inherit">
                         </div>
 
 
@@ -154,7 +157,7 @@
 
 
                 <div class="blog-list clearfix">
-                    <div class="blog-box row">
+                    <div class="blog-box row wow slideInLeft">
                         <div class="col-md-4">
                             <div class="post-media">
                                 <a href="single.html" title="">
@@ -181,7 +184,7 @@
 
                 <hr class="invis">
 
-                <div class="blog-box row">
+                <div class="blog-box row wow slideInLeft data-wow-delay="0.2s"">
                     <div class="col-md-4">
                         <div class="post-media">
                             <a href="single.html" title="">
@@ -206,7 +209,7 @@
 
                 <hr class="invis">
 
-                <div class="blog-box row">
+                <div class="blog-box row wow slideInLeft">
                     <div class="col-md-4">
                         <div class="post-media">
                             <a href="single.html" title="">
@@ -249,7 +252,7 @@
 
                 <div>
 
-                    <section class="forms-section">
+                    <section class="forms-section wow slideInRight" id="form1-div">
                         <h1 class="section-title">Veuillez Connectez </h1>
                         <div class="forms">
                             <div class="form-wrapper is-active">
@@ -337,8 +340,8 @@
                                 <textarea type="text" name="comment" id="comment" cols="40" rows="5"></textarea>
                                 <div class="g-recaptcha" data-sitekey="6LcLissUAAAAACdWJIJtwj5qcwwxyxkNQOdXhWPH" style="margin-top: 30px;"></div>
                             </div>
-                        <div class="button-section">
-                            <label>Envoyer<input type="submit" name="Sign Up" id="submit_trad_form"/></label>
+                        <div class="button-section" id="submit_div">
+                            <input type="submit" name="Sign Up" id="submit_trad_form"/>
                             
                         </div>
                     </form>
@@ -386,6 +389,8 @@ switchers.forEach(item => {
 	})
 })
 
+    </script>
+    
     
 <script>
 grecaptcha.ready(function() {
@@ -396,19 +401,42 @@ grecaptcha.ready(function() {
 </script>
 
 
-    </script>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://www.google.com/recaptcha/api.js?render=_reCAPTCHA_site_key"></script>
-    <script>
-        grecaptcha.ready(function() {
-            grecaptcha.execute('put your site key here', {action: 'homepage'}).then(function(token) {
-              // pass the token to the backend script for verification
-            });
-        });
+    <!-- add wow.js to make animations when scrolling-->
+    <script type="text/javascript" src="js/wow.min.js"></script>
+        <script>
+        new WOW().init();
         </script>
+
+
+
+    <script>
+    //animations script //
+    $(function(){
+
+//make var for this animation to make it easer to modify 
+var effects = 'animated bounce';
+var effectsEnd = 'animationend onAnimationEnd mozAnimationEnd xebkitAnimationEnd';
+
+
+$('#submit_div').hover(function(){
+
+    $(this).addClass(effects).one(effectsEnd,function(){
+
+        $(this).removeClass(effects);
+    });
+
+
+
+});
+
+
+});
     
+    </script>
 </body>
 
 </html>
