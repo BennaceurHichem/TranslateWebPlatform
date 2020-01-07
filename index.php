@@ -42,14 +42,20 @@
 
 
 <?php
-         // define variables and set to empty values
+     /*
+     FORM VALIDATION WITH PHP
+    
+     
+     // define variables and set to empty values
          $name = $prenom= $email = $numTel = $adresse = $lang_origine =$lang_src=$lang_origine= $file=$typeTrad=$comments=$assermentee="";
          $file_uploaded="";
          $nameErr = $prenomErr= $emailErr = "";
          $numTelErr = $adresseErr = $lang_origineErr =$lang_srcErr=$lang_origineErr="";
          $fileErr=$typeTradErr=$commentsErr=$assermenteeErr="";
          $file_uploadedErr="";
-         
+if(isset($_POST["submit"]))
+{
+
          if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["nom"])) {
                $nameErr = "le nom est obligatoire";
@@ -66,7 +72,7 @@
 
 
             if (empty($_POST["email"])) {
-               $emailErr = "remplissez ce champ d'eamil svp";
+               $emailErr = "remplissez ce champ d'email svp";
             }else {
                $email = test_input($_POST["email"]);
                
@@ -95,7 +101,7 @@
              //il reste language source et dest   
 
 
-/*          this is the file management 
+        this is the file management 
              if(isset($_FILES['uploaded_file'])) {
                 $errors     = array();
                 $maxsize    = 5097152; //5MB max 
@@ -124,7 +130,7 @@
                 die(); //Ensure no more processing is done
             }
             }
-*/
+
 
             if (empty($_POST["comment"])) {
                $comment = "";
@@ -134,13 +140,14 @@
          
           
          }
-         
+}
          function test_input($data) {
             $data = trim($data);
             $data = stripslashes($data);
             $data = htmlspecialchars($data);
             return $data;
          }
+         */
       ?>
 
 
@@ -156,7 +163,7 @@
                 <ul class="navbar-nav text-center">
                     <li class="nav-item active ">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="#">Accueil<span class="sr-only">(current)</span></a>
                         </h6>
 
                     </li>
@@ -222,12 +229,12 @@
 
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 text-center">
                             <div class="conteneur2 diapo col">
                                 <div class="d2"></div>
                             </div>
-                        </div>
-
+                        </div> 
+      
 
 
 
@@ -453,29 +460,46 @@
                 <div class="form-style-10 ">
                     <h1>Demande de devis de traduction<span>demander votre devis facilement en remplissant ce
                             formulaire</span></h1>
-                    <form id="traduction_forme" action="traduction_forme_submit.php" method="post">
+                    <form id="traduction_forme">
                         <div class="section"><span>1</span>Nom & prénoms</div>
                         <div class="inner-wrap">
-                            <h4>Nom<input type="text" name="nom" id="nom" /></h4>
-                            <span class = "error">* <?php echo $nameErr;?></span>
-                            <h4>Prénom <textarea name="prenom" id="prenom"></textarea></h4>
-                            <span class = "error">* <?php echo $prenomErr;?></span>
+                            <h4>Nom</h4>
+                            <input type="text" name="nom" id="nom" />
+                            <span class = "error" id="err_nom"></span>
+                            <h4>Prénom</h4>
+                            <input type="text"  name="prenom" id="prenom"></input>
+                            <span class = "error" id="err_prenom"></span>
                         </div>
 
                         <div class="section"><span>2</span>Email & Phone</div>
                         <div class="inner-wrap">
-                            <h4>Email Address <input type="email" name="email" id="email" /></h4>
-                            <h4>Numéros de téléphone <input type="text" name="num_tel" id="num_tel" /></h4>
-                            <h4>Adresse <input type="text" name="adresse" id="adresse" /></h4>
-                            <span class = "error">* <?php echo $adresseErr;?></span>
+                        <div>
+                        <h4>Email Address <input type="email" name="email" id="email" /></h4>
                         </div>
 
-                        <div class="section"><span>3</span>Passwords</div>
+                          <div>
+                          <h4>Numéros de téléphone <input type="text" name="num_tel" id="num_tel" /></h4>
+                          </div>
+                          <div>
+                          <h4>Adresse <input type="text" name="adresse" id="adresse" /></h4>
+
+                          </div>
+                           
+                            <span class = "error"  id="err_adresse"></span>
+                        </div>
+
+                        <div class="section"><span>3</span>détaille sur la traduction</div>
                         <div class="inner-wrap">
+                            <div>
                             <h4>Langue d'origine <input type="text" name="lang_origine" id="lang_origine" /></h4>
-                            <span class = "error">* <?php echo $lang_origineErr;?></span>
+
+                            </div>
+                            <span class = "error" id="err_lang_origine"></span>
+                            <div>
                             <h4>Langue source <input type="text" name="lang_source" id="lang_source" /></h4>
-                            <span class = "error">* <?php echo $lang_srcErr;?></span>
+
+                            </div>
+                            <span class = "error" id="err_lang_source"></span>
 
 
                             <h4>Select a file: </h4><input type="file" name="file_upload" id="file_upload"><br><br>
@@ -485,16 +509,15 @@
                                 <h4>Type de traduction</h4>
                                 <!--Trigger-->
                                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="type_trad">type
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name="type_trad">type
                                     traduction</button>
-
                                 <!--Menu-->
                                 <div class="dropdown-menu dropdown-primary">
                                     <a class="dropdown-item" name="choix_type_trad" value="Général" href="#">Général</a>
                                     <a class="dropdown-item" name="choix_type_trad" value="Scientifique" href="#">Scientifique</a>
                                     <a class="dropdown-item" name="choix_type_trad" value="Site web" href="#">Site web</a>
                                 </div>
-                                <span class = "error">* <?php echo $typeTradErr;?></span>
+                               
                             </div>
                             <!--/Dropdown primary-->
 
@@ -502,7 +525,7 @@
 
                                 <h4>Commentaire et demande spécifique</h4>
                                 <textarea type="text" name="comment" id="comment" cols="40" rows="5"></textarea>
-                                <span class = "error">* <?php echo $commentsErr;?></span>
+                                <span class = "error" id="err_comment"></span>
     
                             </div>
 
@@ -510,7 +533,7 @@
                             <div class="custom-control custom-checkbox " style="margin-top: 30p;margin-bottom: 30px;">
                                 <input type="checkbox" value="assermentee" class="margin_form mw-100 custom-control-input" id="customCheck" name="assermentee">
                                 <label class="custom-control-label" for="customCheck">traducteurs assermentée</label>
-                                <span class = "error">* <?php echo $typeTradErr;?></span>
+                               
                               </div>
 
                             <!--my captcha-->
@@ -522,7 +545,7 @@
 
                         </div>
                         <div class="button-section text-center" id="submit_div">
-                            <button type="submit" name="submit_trad_form" class="btn btn-primary btn-md w-75 p-3">Submit</button>
+                            <button type="submit" name="submit_trad_form" class="btn btn-primary btn-md w-75 p-3"><input />Submit</button>
 
                         </div>
                     </form>
@@ -702,6 +725,13 @@
         </script>
 
 
+<!--form validation with jquery -->
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+  <script src="validation.js"></script>
+  
+
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -744,6 +774,9 @@
             });
 
         </script>
+
+
+        
 </body>
 
 </html>

@@ -10,10 +10,10 @@
       <?php
          // define variables and set to empty values
          $name = $prenom= $email = $numTel = $adresse = $lang_origine =$lang_src=$lang_origine= $file=$typeTrad=$comments=$assermentee="";
-         $file_uploaded=""
-         $nameErr = $prenomErr= $emailErr = $numTelErr = $adresseErr = $lang_origineErr =$lang_srcErr=$lang_origineErr
+         $file_uploaded="";
+         $nameErr = $prenomErr= $emailErr = $numTelErr = $adresseErr = $lang_origineErr =$lang_srcErr=$lang_origineErr="";
          $fileErr=$typeTradErr=$commentsErr=$assermenteeErr="";
-         $file_uploadedErr=""
+         $file_uploadedErr="";
          
          if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["nom"])) {
